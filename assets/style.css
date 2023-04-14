@@ -1,0 +1,38 @@
+body{
+    background-color: rgb(124, 106, 237);
+display: flex;
+display: block;
+justify-content: center;
+font-family: 'Times New Roman', Times, serif;
+font-size: 20px;
+color: whitesmoke;
+}
+
+header{
+    background-color: rgb(50, 34, 93);
+    text-align: center;
+    border: solid black 4px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+section{
+    text-align: center;
+}
+
+.card{
+    background-color: rgb(50, 34, 93);
+    border: solid black 4px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    font-weight: bolder;
+
+}
+
+button{
+    background-color: brown;
+    border: solid black 3px;
+    font-size: 30px;
+    margin: 20px;
+}
+    
