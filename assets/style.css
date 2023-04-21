@@ -35,4 +35,10 @@ button{
     font-size: 30px;
     margin: 20px;
 }
-    
+
+#A,
+#B,
+#C,
+#D{
+font-size: 20px;
+}
