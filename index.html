@@ -9,16 +9,33 @@
 </head>
 <body>
 <header>
-    <h1>JavaScript</h1>
+    <h1 class="cycle">JavaScript</h1>
 </header>
 
 <section class="card">
-    <p>Think you know JavaScript? Try taking this quiz to test yourself!!</p>
-    <p>You have 1 minute to answer all six questions. Get a question wrong and 10 seconds will be subtracted from your time</p>
-    <p>Try and answer the six questions the fastest to set the high score!</p>
+    <p id="line-one">Think you know JavaScript? Try taking this quiz to test yourself!!</p>
+    <p id="line-two">You have 1 minute to answer all six questions. Get a question wrong and 10 seconds will be subtracted from your time.</p>
+    <div class="card" id="hide">
+        <p id="question"></p>
+        <p id="answer"></p>
+        <button id="A"></button>
+        <button id="B"></button>
+        <button id="C"></button>
+        <button id="D"></button>
+    </div>
+    <p id="line-three">Try and answer the six questions the fastest to set the high score!</p>
 </section>
 
-<section><button id="start-game">Start Game</button></section>
+<section><button class="start-game">Start Game</button></section>
+
+<section class="card">
+    <h2>Time Left:</h2>
+    <h2 class="timer">60</h2>
+    <h2>Wins:</h2>
+    <h2 id="wins-counter"></h2>
+    <h2>Losses:</h2>
+    <h2 id="loss-counter"></h2>
+</section>
     
 </body>
 <script src="./assets/script.js"></script>
