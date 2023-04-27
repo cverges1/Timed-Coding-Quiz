@@ -134,7 +134,6 @@ function displayQuestion(){
         answerD.textContent = questionList[questionIndex].D;    
 }};
 
-
 // if user answers correct, moves to next question, background of answer box changes green and ✅ next to it. Add highscore
 var initials = document.getElementById('initials');
 var scoreBtn = document.getElementById('saveForm');
