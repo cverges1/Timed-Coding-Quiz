@@ -72,6 +72,13 @@ var timerCount = 60;
 var score;
 score = timer
 
+var initials = document.getElementById('initials');
+var scoreBtn = document.getElementById('saveForm');
+scoreBtn.style.display = "none";
+var leaderBoard = document.getElementById('high-scores');
+
+
+var savedScoreArr = JSON.parse(localStorage.getItem('savedScores')) || [];
 
 function changeText() {
 
@@ -94,8 +101,6 @@ function changeText() {
     }, 700);
 }
 
-changeText();
-
 function startGame() {
     startBtn.disabled = true;
     startTimer();
@@ -112,9 +117,9 @@ function startTimer() {
              youWon();
              
         }}
-        if (timerCount === 0) {
+        if (timerCount <= 0) {
             clearInterval(timer);
-            youLost();
+            youWon();
         }
     }, 1000)
 };
@@ -134,22 +139,15 @@ function displayQuestion(){
         answerD.textContent = questionList[questionIndex].D;    
 }};
 
-// if user answers correct, moves to next question, background of answer box changes green and ✅ next to it. Add highscore
-var initials = document.getElementById('initials');
-var scoreBtn = document.getElementById('saveForm');
-scoreBtn.style.display = "none";
-var leaderBoard = document.getElementById('high-scores');
-
-
-var savedScoreArr = JSON.parse(localStorage.getItem('savedScores')) || [];
-
 function saveScore(){
+
     var savedScore = initials.value + " " + timerCount;
     savedScoreArr.push(savedScore);
     localStorage.setItem('savedScores',JSON.stringify(savedScoreArr));
-    for(var i=0; i<localStorage.length; i++){
+    for(var i=0; i<savedScoreArr.length; i++){
+
         var leaderList = document.createElement('li');
-        leaderList.textContent = JSON.stringify(localStorage.key[i]);
+        leaderList.textContent = savedScoreArr[i];
         leaderBoard.append(leaderList);
     };
 };
@@ -161,57 +159,48 @@ scoreBtn.addEventListener("submit", function(event){
 
 function youWon() {
     scoreBtn.style.display = "block";
+    if (timerCount<=0){
+        line1.textContent = "YOU LOST. TRY AGAIN!"
+        startBtn.disabled = true;
+    } else {
     line1.textContent = "YOU WON!! ADD YOUR NAME TO THE LEADERBOARD"
     line2.style.display = "none";
-    startBtn.disabled = false;
-};
-// if user gets question wrong, subtract 10 seconds from running time, change bg color red and ❌
-function youLost() {
-    line1.textContent = "YOU LOST. TRY AGAIN!"
-    startBtn.disabled = false;
-};
-// record score to local storage
+    startBtn.disabled = true;
+}};
 
 startBtn.addEventListener("click", startGame);
 
 answerA.addEventListener("click", function (event){
     if (answerA === questionList[questionIndex].E){
-        answerA.textContent = "Correct ✅"
     } else {
-        timerCount - 10
-        answerA.textContent = "Incorrect ❌"
+        timerCount-=10;
     }
     questionIndex++
     displayQuestion();
 });
 answerB.addEventListener("click", function (event){
     if (answerB === questionList[questionIndex].E){
-        answerB.textContent = "Correct ✅"
     } else {
-        timerCount - 10
-        answerB.textContent = "Incorrect ❌"
+        timerCount-=10;
     }
     questionIndex++
     displayQuestion();});
 
 answerC.addEventListener("click", function (event){   
     if (answerC === questionList[questionIndex].E){
-    answerC.textContent = "Correct ✅"
 } else {
-    timerCount - 10
-    answerC.textContent = "Incorrect ❌"
-
+    timerCount-=10;
 }
 questionIndex++
 displayQuestion();});
 
 answerD.addEventListener("click", function(event){
     if (answerD === questionList[questionIndex].E){
-        answerD.textContent = "Correct ✅"
     } else {
-        timerCount - 10
-        answerD.textContent = "Incorrect ❌"
+        timerCount-=10;
     }
     questionIndex++
     displayQuestion();
 });
+
+changeText();
